@@ -18,6 +18,15 @@ jobs:
         uses: actions/setup-java@v4
         with:
           java-version: '17'
+          distribution: 'temurin' # You can change this to another distribution if needed
+          java-package: jdk
+          check-latest: false
+          server-id: github
+          server-username: ${{ secrets.GITHUB_ACTOR }}
+          server-password: ${{ secrets.GITHUB_TOKEN }}
+          overwrite-settings: true
+          job-status: success
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Step 3- Build Maven Project
         run: mvn -B package --file pom.xml
